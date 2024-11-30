@@ -1,0 +1,14 @@
+<div class="geolocation-container">
+  <div class="map-container">
+    <div id="map"></div>
+    <div class="controls">
+      <button (click)="getCurrentPosition()" [disabled]="isLoading">
+        {{ isLoading ? 'Caricamento...' : 'Trova la mia posizione' }}
+      </button>
+      <div class="coordinates" *ngIf="currentPosition">
+        <p>Latitudine: {{currentPosition.lat}}</p>
+        <p>Longitudine: {{currentPosition.lng}}</p>
+      </div>
+    </div>
+  </div>
+</div>

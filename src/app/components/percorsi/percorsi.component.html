@@ -1,0 +1,85 @@
+<div class="percorsi-container">
+  <div class="input-section">
+    <div class="input-group">
+      <input 
+        type="text" 
+        [(ngModel)]="startLocation" 
+        placeholder="Punto di partenza"
+        (keyup.enter)="searchLocation('start')"
+      />
+      <button (click)="clearInput('start')" *ngIf="startLocation">✕</button>
+      <button (click)="searchLocation('start')" class="search-btn">🔍</button>
+    </div>
+
+    <div class="input-group">
+      <input 
+        type="text" 
+        [(ngModel)]="endLocation" 
+        placeholder="Destinazione"
+        (keyup.enter)="searchLocation('end')"
+      />
+      <button (click)="clearInput('end')" *ngIf="endLocation">✕</button>
+      <button (click)="searchLocation('end')" class="search-btn">🔍</button>
+    </div>
+
+    <div class="transport-buttons">
+      <button 
+        [class.active]="selectedTransport === 'car'"
+        (click)="selectTransport('car')"
+      >
+        🚗 Auto
+      </button>
+      <button 
+        [class.active]="selectedTransport === 'walk'"
+        (click)="selectTransport('walk')"
+      >
+        🚶 A piedi
+      </button>
+      <button 
+        [class.active]="selectedTransport === 'bike'"
+        (click)="selectTransport('bike')"
+      >
+        🚲 Bicicletta
+      </button>
+    </div>
+
+    <button 
+      class="calculate-btn"
+      [disabled]="!canCalculate()"
+      (click)="calculateRoute()"
+    >
+      Calcola Percorso
+    </button>
+  </div>
+
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  @if (routeInfo) {
+    <div class="route-info">
+      <h3>Informazioni Percorso</h3>
+      <div class="route-summary">
+        <p><i class="fas fa-clock"></i> Durata: {{ routeInfo.duration }}</p>
+        <p><i class="fas fa-road"></i> Distanza: {{ routeInfo.distance }}</p>
+        <p><i class="fas fa-tachometer-alt"></i> Velocità media: {{ routeInfo.avgSpeed }}</p>
+      </div>
+      
+      <h4>Indicazioni stradali:</h4>
+      <div class="steps-list">
+        @for (step of routeInfo.steps; track step) {
+          <div class="step-item">
+            <div class="step-icon">{{ step.icon }}</div>
+            <div class="step-content">
+              <div class="step-instruction">{{ step.instruction }}</div>
+              <div class="step-details">
+                <span class="step-street">{{ step.streetName }}</span>
+                <span class="step-distance">({{ step.distance }})</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
