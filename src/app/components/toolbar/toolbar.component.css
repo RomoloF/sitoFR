@@ -1,0 +1,63 @@
+:host {
+  position: fixed;
+  top: -64px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+/* Area sensibile per il mouse */
+.toolbar-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px; /* Area sensibile leggermente più alta */
+  opacity: 0; /* Invisibile */
+}
+
+/* La toolbar appare solo quando il mouse è sull'area trigger */
+.toolbar-trigger:hover ~ mat-toolbar,
+mat-toolbar:hover {
+  top: 0;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: -64px;
+  left: 0;
+  right: 0;
+  background-color: #1976d2;
+  color: white;
+  height: 64px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: top 0.3s ease;
+}
+
+.toolbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.toolbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.toolbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toolbar-links a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: 500;
+}

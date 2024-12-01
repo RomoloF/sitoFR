@@ -16,3 +16,40 @@ router-outlet + * {
   width: 100%;
   height: 100%;
 }
+
+mat-toolbar {
+  position: fixed;
+  top: -64px; /* Nasconde inizialmente la toolbar */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: top 0.3s ease;
+}
+
+/* Area sensibile per il mouse in alto */
+.toolbar-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  z-index: 999;
+}
+
+/* Quando il mouse è sull'area trigger o sulla toolbar stessa */
+.toolbar-trigger:hover + mat-toolbar,
+mat-toolbar:hover {
+  top: 0;
+}
+
+/* Aggiusta il contenuto principale per la toolbar nascosta */
+.content {
+  padding-top: 0; /* Rimuove il padding quando la toolbar è nascosta */
+  transition: padding-top 0.3s ease;
+}
+
+/* Aggiunge padding quando la toolbar è visibile */
+.toolbar-trigger:hover ~ .content,
+mat-toolbar:hover ~ .content {
+  padding-top: 64px;
+}

@@ -92,7 +92,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .profile i {
-      font-size: 4rem;
+      font-size: 3rem;
       color: #1976d2;
       margin-bottom: 1rem;
     }
@@ -100,7 +100,7 @@ import { CommonModule } from '@angular/common';
     .profile h3 {
       margin: 0;
       color: #333;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     .profile .title {
